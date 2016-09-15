@@ -1,0 +1,16 @@
+app:
+  build: ./docker
+  ports:
+  - 4000:4000
+  - 4001:4001
+
+  links:
+    - pg:pg
+
+  volumes:
+    - .:/home/user/app
+
+  user: $USER
+
+pg:
+  image: postgres
