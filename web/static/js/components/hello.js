@@ -28,6 +28,7 @@ var Hello = React.createClass({
     // console.log("Hello.initial", this);
     // const {dispatch, channel} = this.props;
     return {
+      world: "lobby",
       name: this.props.name,
       message: "",
       data: data1
@@ -128,6 +129,12 @@ var Hello = React.createClass({
             value="Send"
             onClick={this.handleSendClick} />
         </p>
+        <h2>Worlds in server:</h2>
+        <ul>
+          <li>lobby</li>
+          <li>beginners</li>
+        </ul>
+        Active world: {this.state.world}
       </div>
     );
   }

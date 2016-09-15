@@ -18,17 +18,20 @@ docker-compose run -p 4000:4000 -p 4001:4001 --user $(id -u):$(id -g) -w /home/u
 > mix deps.get
 > mix ecto.create && mix ecto.migrate
 > mix test
-
+```
 
 ## Run dev server
 
+```shell
 docker-compose run -p 4000:4000 -p 4001:4001 --user $(id -u):$(id -g) -w /home/user/app app /bin/bash
 
 > mix deps.get
 > mix ecto.create && mix ecto.migrate
 > npm i
 > mix phoenix.server
+```
 
+# Deprecated
 
 ## Depends: Erlang & Elixir
 

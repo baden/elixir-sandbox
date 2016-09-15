@@ -1,4 +1,6 @@
 defmodule Sandbox.World do
+  require Logger
+
   defstruct [
     name: "noname",
     players: []
@@ -8,6 +10,7 @@ defmodule Sandbox.World do
     Add Player to World
   """
   def add_player(world, player) do
+    Logger.info("World: add player #{inspect player}")
     %{world | players: [player | world.players]}
   end
 

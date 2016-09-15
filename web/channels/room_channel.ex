@@ -1,8 +1,9 @@
 defmodule Sandbox.RoomChannel do
   use Phoenix.Channel
+  require Logger
 
-  def join("room:lobby", _message, socket) do
-    IO.puts "Someone has join to room:lobby"
+  def join("room:lobby", payload, socket) do
+    Logger.info("Someone has join to room:lobby with #{inspect payload}")
     {:ok, socket}
   end
 
@@ -11,7 +12,7 @@ defmodule Sandbox.RoomChannel do
   end
 
   def handle_in("new_msg", %{"name" => name, "body" => body}, socket) do
-    IO.puts "Someone send a message:"  <> body
+    Logger.info("Someone #{name} send a message:#{inspect body}")
     msg = %{
       timestamp: :erlang.system_time,
       name: name,
