@@ -3,7 +3,8 @@ defmodule Sandbox.World do
 
   defstruct [
     name: "noname",
-    players: []
+    players: [],
+    land: %{}
   ]
 
   @doc """
@@ -24,4 +25,31 @@ defmodule Sandbox.World do
     %{world | name: name}
   end
 
+  @doc """
+    Add Item to World
+  """
+  def add_item(world, item, position) do
+    Logger.info("World: add item #{inspect item} to #{inspect position}")
+    landbefore = Map.get(world.land, position, [])
+    Logger.info("landbefore =  #{inspect landbefore}")
+    # landafter = MapSet.put(landbefore, item)
+    landafter = [item | landbefore]
+    %{world | land: Map.put(world.land, position, landafter)}
+  end
+
+  @doc """
+    Add Item to World
+  """
+  def land(world, position) do
+    Map.get(world.land, position, [])
+    # |> MapSet.to_list
+  end
+
+  defimpl Inspect do
+    import Inspect.Algebra
+
+    def inspect(set, opts) do
+      concat ["#World<", set.name, ">"]
+    end
+  end
 end

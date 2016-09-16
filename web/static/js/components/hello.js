@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './hello.css';
 import List from './list';
+import Listener from './listener';
 // import Channel from '../services/channel';
 import {connect} from 'react-redux';
 import {reveiveMessage} from '../actions';
@@ -135,8 +136,28 @@ var Hello = React.createClass({
           <li>beginners</li>
         </ul>
         Active world: {this.state.world}
+        <Listener>
+          {game =>
+            <div>
+              {this.renderCurrentView(game)}
+            </div>
+          }
+        </Listener>
       </div>
     );
+  },
+
+  renderCurrentView: function(game) {
+    console.log(["game=", game]);
+    return this.renderJoin();
+    // if (game.players[GameSocket.getPlayerId()])
+    //  return this.renderPlay(game);
+    // else
+    //   return this.renderJoin();
+  },
+
+  renderJoin: function() {
+    return <div>To join, enter your name: TBD</div>;
   }
 });
 //
