@@ -16,10 +16,9 @@ defmodule Sandbox.World do
     %{world | players: Map.put(world.players, player_id, player)}
   end
 
-  def player_command(server, world, player_id, {:walk, :east}) do
+  def player_command(server, world, player_id, command) do
     player = world.players[player_id]
-    Sandbox.Player.player_command(server, player_id, player, {:walk, :east})
-    Logger.warn("World: player '#{player.name}' want walk to east (>)")
+    Sandbox.Player.player_command(server, player_id, player, command)
     # %{world | players: [player | world.players]}
     # %{world | players: Map.put(world.players, player_id, player)}
     # Not fix world yet
@@ -27,11 +26,13 @@ defmodule Sandbox.World do
   end
 
   # TODO: Fake and dirty method
-  def player_move_to_east(world, player_id, player) do
+  def player_move_to(world, player_id, direction) do
     players = world.players
-    new_player_position = %{player.position | x: player.position.x+1}
-    Logger.warn("===? new_player_position = #{inspect new_player_position}")
-    new_player_state = %{player | position: new_player_position}
+    player = world.players[player_id]
+    # new_player_position = %{player.position | x: player.position.x+1}
+    # new_player_state = %{player | position: new_player_position}
+    new_player_state = Sandbox.Player.move_to(player, direction)
+    # Logger.warn("===? new_player_position = #{inspect new_player_position}")
     new_players = %{players | player_id => new_player_state}
     %{world | players: new_players}
   end
