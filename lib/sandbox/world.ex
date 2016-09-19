@@ -17,23 +17,28 @@ defmodule Sandbox.World do
   end
 
   def player_command(server, world, player_id, command) do
-    player = world.players[player_id]
-    Sandbox.Player.player_command(server, player_id, player, command)
-    # %{world | players: [player | world.players]}
-    # %{world | players: Map.put(world.players, player_id, player)}
+    players = world.players
+    player = players[player_id]
+    new_player_state = Sandbox.Player.player_command(server, player_id, player, command)
+    new_players = %{players | player_id => new_player_state}
     # Not fix world yet
-    world
+    # world
+    %{world | players: new_players}
   end
 
   # TODO: Fake and dirty method
-  def player_move_to(world, player_id, direction) do
+  def player_move_to(world, player_id, direction, server) do
     players = world.players
     player = world.players[player_id]
     # new_player_position = %{player.position | x: player.position.x+1}
     # new_player_state = %{player | position: new_player_position}
     new_player_state = Sandbox.Player.move_to(player, direction)
-    # Logger.warn("===? new_player_position = #{inspect new_player_position}")
+    # Logger.warn("new #{new_player_state.name} position is #{inspect new_player_state.position}")
     new_players = %{players | player_id => new_player_state}
+    # Continue run
+    # TODO: not fix state yet
+    Sandbox.Player.player_command(server, player_id, player, player.command)
+    # :erlang.send_after(trunc(1000 / speed), server, {:player_move, direction, player_id})
     %{world | players: new_players}
   end
 

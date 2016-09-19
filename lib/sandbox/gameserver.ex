@@ -45,7 +45,7 @@ defmodule Sandbox.GameServer do
 
   def handle_info({:player_move, direction, player_id}, world) do
     # IO.puts "\n***** Gameserver.handle_info({:tbd, #{inspect player}})\n"
-    new_world = World.player_move_to(world, player_id, direction)
+    new_world = World.player_move_to(world, player_id, direction, self)
     {:noreply, new_world}
   end
 

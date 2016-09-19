@@ -31,14 +31,12 @@ defmodule GameServerTest do
     # Alice want walk to north
     Sandbox.GameServer.player_command(1, {:walk, :north})
 
-    # s1 = World.add_player(s, p)
+    player = &Sandbox.GameServer.get_game.players[&1]
+    # TODO: now one command at a time, but need a set(?) of commands
+    assert player.(0).command == {:walk, :east}
 
-    # g = Sandbox.GameServer.get_game
-    # players = Sandbox.GameServer.players
     game_after = Sandbox.GameServer.get_game
-
     assert World.players_count(game_after) == 2
-
     IO.puts "\nGame  after = #{inspect game_after}"
 
     players = game_after.players
@@ -46,17 +44,36 @@ defmodule GameServerTest do
     assert players[0].position.x == 0   # Not moved jet but start walking
     assert players[1].position.y == 0   # Not moved jet but start walking
 
-    :timer.sleep(510) # Wait total a bit more than 0.5 sec
+    :timer.sleep(550) # Wait total a bit more than 0.5 sec
 
-    assert Sandbox.GameServer.get_game.players[1].position.y == 1   # Wow, she is alive!!!
-    assert Sandbox.GameServer.get_game.players[0].position.x == 0   # But he is not moved yet!!!
+    # pos = fn(player_id), do end
+    pos = &Sandbox.GameServer.get_game.players[&1].position
+
+    assert pos.(0).x == 0   # Bob is not moved yet
+    assert pos.(1).y == 1   # Wow, she is alive!!!
 
     :timer.sleep(500) # Wait total a bit more than 1 sec
 
-    # game_after2 =
-    # IO.puts "\nGame  after = #{inspect game_after2}"
-    assert Sandbox.GameServer.get_game.players[0].position.x == 1   # Wow, he is alive!!!
-    # assert game_after2.players[1].position.y == 2   # Wow, she is alive too!!!
+    assert pos.(0).x == 1   # Wow, he is alive!!!
+    assert pos.(1).y == 2   # Alice is run to far
+
+    :timer.sleep(500) # Wait total a bit more than 1.5 sec
+
+    assert pos.(0).x == 1   # Bob slow like a snail
+    assert pos.(1).y == 3   # Alice is run to far away
+
+    # Stop a Alice
+    Sandbox.GameServer.player_command(1, :stop_walk)
+
+    :timer.sleep(500) # Wait total a bit more than 2.0 sec
+
+    assert pos.(0).x == 2   # Bob slow like a lazy snail
+    assert pos.(1).y == 4   # Alice finish walking and wait for new command
+
+    :timer.sleep(1_000) # Wait total a bit more than 3.0 sec
+
+    assert pos.(0).x == 3   # Bob slow like a big lazy snail
+    assert pos.(1).y == 4   # Alice not got new commands
 
   end
 
