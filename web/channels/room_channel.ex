@@ -1,14 +1,27 @@
 defmodule Sandbox.RoomChannel do
   use Phoenix.Channel
   require Logger
+  alias Sandbox.Client.IdServer
 
   def join("room:lobby", payload, socket) do
     Logger.info("Someone has join to room:lobby with #{inspect payload}")
+    IdServer.generate_id(socket.transport_pid)
     {:ok, socket}
   end
 
   def join("room:" <> _private_room_id, _params, _socket) do
     {:error, %{reason: "unauthorized"}}
+  end
+
+  def terminate(_reason, socket) do
+    IdServer.get_id(socket.transport_pid)
+    # |> GameServer.remove_player
+  end
+
+  def handle_in("join", %{"name" => name}, socket) do
+    player_id = IdServer.get_id(socket.transport_pid)
+    GameServer.add_client(player_id, name)
+    {:reply, {:ok, %{"player_id" => player_id}}, socket}
   end
 
   def handle_in("new_msg", %{"name" => name, "body" => body}, socket) do

@@ -9,7 +9,8 @@ end
 
 defmodule Sandbox.Player.Class do
   @classes ~w(
-    WARRIOR PALADIN MIMIC ROGUE RANGER
+    WARRIOR PALADIN MIMIC ROGUE RANGER MINDCRAFTER SHAMAN
+    ADVENTURER RUNEMASTER PRIEST DRUID MAGE ARCHER
   )a
   # defstruct @classes
 

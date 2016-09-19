@@ -6,16 +6,17 @@ defmodule WorldTest do
 
   test "Create empty world" do
     s = %World{}
-    assert s.players == []
+    assert s.players == %{}
   end
 
   test "Testing app player to new world" do
     s = %World{}
-    assert s.players == []
+    assert s.players == %{}
 
-    p = %Player{name: "Bob"}
-    s1 = World.add_player(s, p)
-    assert s1.players == [p]
+    player_id = 0
+    player = %Player{name: "Bob"}
+    s1 = World.add_player(s, player_id, player)
+    # assert s1.players == [p]
     IO.puts "Players: #{inspect s1}"
   end
 

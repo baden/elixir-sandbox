@@ -81,3 +81,8 @@ docker-compose run -p 8981:8981 -p 8982:8982 -p 8983:8983 --user $(id -u):$(id -
 3. Start Phoenix endpoint with `mix phoenix.server`
 
 Now you can visit http://localhost:4000 from your browser.
+
+## Inspiration
+
+* https://ru.wikipedia.org/wiki/NetHack
+* http://te4.org/wiki/Tales_of_Maj%27Eyal_Wiki

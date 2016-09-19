@@ -1,0 +1,33 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+#: web/templates/page/index.html.eex:2
+msgid "Welcome to %{name}"
+msgstr ""
+
+#: lib/sandbox/gameserver.ex:11
+msgid "Starting GameServer..."
+msgstr ""
+
+#: lib/sandbox/player/stats.ex:20
+msgid "player_stats_description_strength"
+msgstr ""
+  "Strength defines your character's ability to apply physical force. "
+  "It increases your damage done with melee weapons (and to a lesser extent, "
+  "arrows), your chance to resist physical effects, and your carrying capacity."
+
+#: lib/sandbox/player/stats.ex:24
+msgid "player_stats_description_dexterity"
+msgstr ""
+  "Dexterity defines your character's ability to be agile and alert. "
+  "It increases your chance to hit, your ability to avoid attacks, and "
+  "your damage with daggers and ranged weapons."

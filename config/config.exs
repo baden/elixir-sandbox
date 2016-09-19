@@ -18,6 +18,9 @@ config :sandbox, Sandbox.Endpoint,
   pubsub: [name: Sandbox.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+# config :sandbox, Sandbox.Gettext, default_locale: "ru"
+config :sandbox, Sandbox.Gettext, default_locale: "en"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

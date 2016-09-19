@@ -11,6 +11,7 @@ defmodule Sandbox do
       # Start the endpoint when the application starts
       supervisor(Sandbox.Endpoint, []),
       # Start your own worker by calling: Sandbox.Worker.start_link(arg1, arg2, arg3)
+      worker(Sandbox.Client.IdServer, []),
       worker(Sandbox.GameServer, [])
     ]
     opts = [strategy: :one_for_one, name: Sandbox.Supervisor]
