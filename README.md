@@ -31,6 +31,38 @@ docker-compose run -p 4000:4000 -p 4001:4001 --user $(id -u):$(id -g) -w /home/u
 > mix phoenix.server
 ```
 
+## Build release (TBD)
+
+```shell
+MIX_ENV=prod mix deps.get
+npm i
+npm run compile
+MIX_ENV=prod mix phoenix.digest
+MIX_ENV=prod mix compile
+MIX_ENV=prod mix release
+```
+
+Now, we can deploy archive `rel/sandbox/releases/0.1.0/sandbox.tar.gz` to remote host.
+
+## Start release
+
+Several instructions:
+* [one](http://www.phoenixframework.org/docs/advanced-deployment)
+* [two](http://blog.plataformatec.com.br/2016/04/running-migration-in-an-exrm-release/)
+
+### Prepare database
+```shell
+rel/sandbox/bin/sandbox command release_tasks create
+rel/sandbox/bin/sandbox command release_tasks migrate
+```
+
+### Start in console (testing)
+
+```shell
+rel/sandbox/bin/sandbox console
+```
+
+
 # Deprecated
 
 ## Depends: Erlang & Elixir

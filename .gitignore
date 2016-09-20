@@ -1,5 +1,6 @@
 # The directory Mix will write compiled artifacts to.
 /_build
+/rel
 
 # If you run "mix test --cover", coverage assets end up here.
 /cover
@@ -28,5 +29,6 @@ erl_crash.dump
 /config/prod.secret.exs
 /priv/static/css/application.css
 /priv/static/js/application.js
+#/priv/static/
 
 *.log
