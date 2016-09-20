@@ -1,5 +1,6 @@
 defmodule Sandbox.World do
   require Logger
+  import UpdateOperator
 
   defstruct [
     name: "noname",
@@ -12,18 +13,26 @@ defmodule Sandbox.World do
   """
   def add_player(world, player_id, player) do
     Logger.info("World: add player #{inspect player}")
-    # %{world | players: [player | world.players]}
-    %{world | players: Map.put(world.players, player_id, player)}
+
+    # %{world | players: Map.put(world.players, player_id, player)}
+    # Map.put(world.players, player_id, player) ~> world.players
+
+    # Cool macro!
+    player ~> world.players[player_id]
   end
 
   def player_command(server, world, player_id, command) do
     players = world.players
     player = players[player_id]
     new_player_state = Sandbox.Player.player_command(server, player_id, player, command)
-    new_players = %{players | player_id => new_player_state}
-    # Not fix world yet
-    # world
-    %{world | players: new_players}
+
+    # new_players = %{players | player_id => new_player_state}
+    # new_players = put_in players[player_id], new_player_state
+    new_players = new_player_state ~> players[player_id]
+
+    # Use my cool map update macro
+    # %{world | players: new_players}
+    new_players ~> world.players
   end
 
   # TODO: Fake and dirty method
@@ -36,7 +45,9 @@ defmodule Sandbox.World do
     # Logger.warn("new #{new_player_state.name} position is #{inspect new_player_state.position}")
     new_players = %{players | player_id => new_player_state}
     # Continue run
-    # TODO: not fix state yet
+
+    # Not fix state here. May be command is changed before!
+    # TODO: Its looks not to good.
     Sandbox.Player.player_command(server, player_id, player, player.command)
     # :erlang.send_after(trunc(1000 / speed), server, {:player_move, direction, player_id})
     %{world | players: new_players}

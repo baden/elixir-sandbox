@@ -1,6 +1,5 @@
 defmodule GameServerTest do
-  alias Sandbox.World
-  alias Sandbox.Player
+  alias Sandbox.{World, Player}
   use ExUnit.Case
 
   test "Create empty world" do
