@@ -35,9 +35,11 @@ defmodule Sandbox.RoomChannel do
     {:noreply, socket}
   end
 
-  def handle_out("new_msg", payload, socket) do
-    # IO.puts "Someone push a message:" <> payload
-    push socket, "new_msg", payload
-    {:noreply, socket}
-  end
+  # As i understand, i can patch payload before sending
+  #
+  # def handle_out("new_msg", payload, socket) do
+  #   # IO.puts "Someone push a message:" <> payload
+  #   push socket, "new_msg", payload
+  #   {:noreply, socket}
+  # end
 end

@@ -20,6 +20,9 @@ defmodule Sandbox.RoomChannelTest do
   test "test broadcasts to game:lobby", %{socket: socket} do
     push socket, "new_msg", %{"name" => "user", "body" => "some message"}
     assert_broadcast "new_msg", %{name: "user", body: "some message"}
+    # Must leave socket?
+    ref = leave(socket)
+    assert_reply ref, :ok    
   end
   #
   # test "broadcasts are pushed to the client", %{socket: socket} do
