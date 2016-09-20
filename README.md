@@ -36,7 +36,7 @@ docker-compose run -p 4000:4000 -p 4001:4001 --user $(id -u):$(id -g) -w /home/u
 ```shell
 MIX_ENV=prod mix deps.get
 npm i
-npm run compile
+MIX_ENV=prod npm run compile
 MIX_ENV=prod mix phoenix.digest
 MIX_ENV=prod mix compile
 MIX_ENV=prod mix release

@@ -1,3 +1,5 @@
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+
 var path = require('path')
 var webpack = require('webpack')
 var publicPath = 'http://localhost:4001/'
@@ -13,6 +15,7 @@ var hot = 'webpack-hot-middleware/client?path=' +
 // function join(dest) { return path.resolve(__dirname, dest); }
 
 var plugins = [
+  new CopyWebpackPlugin([{ from: "./web/static/assets" }]),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.NoErrorsPlugin(),
   new webpack.DefinePlugin({
@@ -29,8 +32,8 @@ module.exports = {
   devtool: prod ? null : 'cheap-module-eval-source-map',
   entry: prod ? entry : [hot, entry],
   output: {
-    path: path.resolve(__dirname) + '/priv/static/js',
-    filename: 'index.bundle.js',
+    path: path.resolve(__dirname) + '/priv/static',
+    filename: 'js/index.bundle.js',
     publicPath: publicPath
     // path: join('priv/static'),
     // filename: 'js/index.bundle.js',
