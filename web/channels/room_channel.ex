@@ -6,7 +6,7 @@ defmodule Sandbox.RoomChannel do
   def join("room:lobby", payload, socket) do
     Logger.info("Someone has join to room:lobby with #{inspect payload}")
     IdServer.generate_id(socket.transport_pid)
-    {:ok, socket}
+    {:ok, %{some: "useful"}, socket}
   end
 
   def join("room:" <> _private_room_id, _params, _socket) do

@@ -3,6 +3,7 @@ defmodule Sandbox.UserSocket do
 
   ## Channels
   channel "room:*", Sandbox.RoomChannel
+  channel "game:lobby", Sandbox.GameChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

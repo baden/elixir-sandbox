@@ -48,7 +48,7 @@ var Hello = React.createClass({
     var channel = this.props.socket.channel("room:lobby", {token: "foo_bar"});
     // this.channel.on("new_msg", msg => console.log("Got message", msg) );
     channel.join()
-      .receive("ok", ({messages}) => console.log("catching up", messages) )
+      .receive("ok", (messages) => console.log("catching up", messages) )
       .receive("error", ({reason}) => console.log("failed join", reason) )
       .receive("timeout", () => console.log("Networking issue. Still waiting...") )
 
