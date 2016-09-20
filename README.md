@@ -33,6 +33,8 @@ docker-compose run -p 4000:4000 -p 4001:4001 --user $(id -u):$(id -g) -w /home/u
 
 ## Build release (TBD)
 
+TODO: I can build several times, but later i got dependencies errors and can't build.
+
 ```shell
 MIX_ENV=prod mix deps.get
 npm i

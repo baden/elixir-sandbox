@@ -46,7 +46,24 @@ defmodule Sandbox.Mixfile do
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
-     {:exrm, "~> 1.0", only: :prod}, # Deployment
+      {:exrm, "~> 1.0.5"}, # Deployment
+     #  {:erlware_commons, github: "erlware/erlware_commons", manager: :rebar3, override: true},
+     #  {:relx, github: "erlware/relx", tag: "v3.20.0", override: true},
+
+    #  {:cf, "~> 0.2.1", override: true},
+    #  {:erlware_commons, github: "erlware/erlware_commons", override: true},
+    #  {:exrm, "~> 1.0"}, # Deployment
+    # TODO remove this once new version of relx is released
+    # https://github.com/bitwalker/exrm/issues/294
+    # {:cf, "~> 0.2.1", override: true},
+    # {:cf, github: "project-fifo/cf", tag: "0.2.1", override: true},
+    {:cf, github: "baden/cf", override: true},
+    {:erlware_commons, github: "erlware/erlware_commons", override: true},
+    {:providers, github: "tsloughter/providers", override: true},
+    {:getopt, github: "jcomellas/getopt", override: true},
+    {:relx, github: "erlware/relx", override: true},
+    # {:exrm, "~> 1.0.0-rc8"},
+
      {:cowboy, "~> 1.0"}]
   end
 
