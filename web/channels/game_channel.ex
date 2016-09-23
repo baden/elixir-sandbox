@@ -24,6 +24,15 @@ defmodule Sandbox.GameChannel do
     {:noreply, socket}
   end
 
+  def handle_in("join", %{"user" => name, "password" => password}, socket) do
+    # player_id = IdServer.get_id(socket.transport_pid)
+    # GameServer.add_client(player_id, name)
+    # TBD: Check user
+    response = %{"result" => "no_user"}
+    {:reply, {:ok, response}, socket}
+  end
+
+
   # Add authorization logic here as required.
   defp authorized?(_payload) do
     true

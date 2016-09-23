@@ -25,4 +25,12 @@ defmodule Sandbox.GameChannelTest do
     broadcast_from! socket, "broadcast", %{"some" => "data"}
     assert_push "broadcast", %{"some" => "data"}
   end
+
+  test "Join new player", %{socket: socket} do
+    credentials = %{"user" => "nobody", "password" => "333"}
+    ref = push socket, "join", credentials
+    assert_reply ref, :ok, %{"result" => "no_user"}
+  end
+
+
 end
