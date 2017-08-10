@@ -39,14 +39,14 @@ defmodule Sandbox.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:phoenix, "~> 1.2.1"},
+    [{:phoenix, "~> 1.3"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.0"},
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
-      {:exrm, "~> 1.0.5"}, # Deployment
+     # {:exrm, "~> 1.0.5"}, # Deployment
      #  {:erlware_commons, github: "erlware/erlware_commons", manager: :rebar3, override: true},
      #  {:relx, github: "erlware/relx", tag: "v3.20.0", override: true},
 
@@ -61,7 +61,7 @@ defmodule Sandbox.Mixfile do
     {:erlware_commons, github: "erlware/erlware_commons", override: true},
     {:providers, github: "tsloughter/providers", override: true},
     {:getopt, github: "jcomellas/getopt", override: true},
-    {:relx, github: "erlware/relx", override: true},
+    # {:relx, github: "erlware/relx", override: true},
     # {:exrm, "~> 1.0.0-rc8"},
 
      {:cowboy, "~> 1.0"}]

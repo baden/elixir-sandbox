@@ -12,8 +12,12 @@ config :logger, level: :warn
 # Configure your database
 config :sandbox, Sandbox.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  # username: "postgres",
+  # password: "postgres",
+  # database: "sandbox_test",
+  # hostname: "pg",
+  username: "baden",
+  password: "333",
   database: "sandbox_test",
-  hostname: "pg",
+  hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

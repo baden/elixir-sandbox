@@ -2,6 +2,21 @@
 
 **TODO: Add description**
 
+## Test and dev on real localhost:
+
+### Prepare
+
+```shell
+
+sudo apt-get install postgresql postgresql-contrib
+sudo -u postgres createuser --interactive
+> baden
+sudo -u postgres createdb baden
+sudo -u postgres psql
+> alter user baden password '333';
+> \q
+```
+
 ## Depends: Docker & Docker-compose
 
 * Ubuntu and Debuan:

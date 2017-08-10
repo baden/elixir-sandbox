@@ -41,8 +41,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :sandbox, Sandbox.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "baden",
+  password: "333",
   database: "sandbox_dev",
-  hostname: "pg",
+  hostname: "localhost",
   pool_size: 10
